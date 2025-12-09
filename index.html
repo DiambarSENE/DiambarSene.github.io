@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio – Diambar SENE | Full Stack Developer & AI Enthusiast</title>
-  <meta name="description" content="Ingénieur en Génie Logiciel spécialisé en développement Full Stack, Microservices et Intelligence Artificielle. Projets en Spring Boot, React, React Native et solutions IA." />
-  <meta name="keywords" content="Développeur Full Stack, Java, Spring Boot, React, Microservices, AI, LLM, Senegal, Ziguinchor" />
-
+  <title>Portfolio – Diambar SENE | Full Stack Developer</title>
+  <meta name="description" content="Ingénieur en Génie Logiciel spécialisé en développement Full Stack, Microservices et solutions d'entreprise." />
+  
   <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -17,704 +16,816 @@
           colors: { 
             primary: '#00b4d8',
             secondary: '#0077b6'
-          },
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'pulse-slow': 'pulse 3s ease-in-out infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-20px)' },
-            }
           }
         },
       },
     };
   </script>
-
+  
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- AOS Animations -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   
   <style>
     * {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
     .gradient-bg {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    .tech-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
     .project-card {
       transition: all 0.3s ease;
       border-left: 4px solid #00b4d8;
     }
     .project-card:hover {
-      border-left-color: #0077b6;
-      box-shadow: 0 10px 30px rgba(0, 180, 216, 0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
     .skill-category {
-      background: linear-gradient(45deg, rgba(0, 180, 216, 0.1), rgba(0, 119, 182, 0.1));
+      background: linear-gradient(45deg, rgba(0, 180, 216, 0.05), rgba(0, 119, 182, 0.05));
     }
   </style>
 </head>
 
-<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition duration-300">
-  <div id="root"></div>
-
-  <script type="text/babel">
-    function App() {
-      const [dark, setDark] = React.useState(true);
-      const [activeSection, setActiveSection] = React.useState('home');
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+  
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-primary">Diambar SENE</h1>
       
-      React.useEffect(() => { 
-        AOS.init({ 
-          duration: 800,
-          once: true
-        }); 
-      }, []);
+      <div class="flex items-center space-x-4">
+        <button id="themeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
+          <i class="fas fa-moon dark:hidden"></i>
+          <i class="fas fa-sun hidden dark:inline"></i>
+        </button>
+        
+        <a href="CV_Diambar_in.pdf" download class="px-4 py-2 bg-primary text-white rounded-lg shadow hover:bg-secondary transition-colors font-medium">
+          <i class="fas fa-download mr-2"></i>CV
+        </a>
+      </div>
+    </div>
+  </nav>
 
-      const toggleTheme = () => {
-        setDark((prev) => {
-          const next = !prev;
-          document.documentElement.classList.toggle('dark', next);
-          return next;
-        });
-      };
-
-      const scrollToSection = (sectionId) => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth' });
-          setActiveSection(sectionId);
-        }
-      };
-
-      const projects = [
-        {
-          title: 'Plateforme de Dématérialisation UASZ',
-          description: 'Application web de dématérialisation des expressions de besoin pour l\'Université Assane Seck de Ziguinchor',
-          technologies: ['Spring Boot', 'Spring Cloud', 'Microservices', 'Thymeleaf', 'PostgreSQL', 'Docker'],
-          status: 'En développement',
-          category: 'Projet personnel',
-          features: ['Gestion des demandes', 'Workflow d\'approbation', 'Reporting', 'Archivage numérique']
-        },
-        {
-          title: 'Application Municipale',
-          description: 'Application web pour la gestion administrative d\'une commune',
-          technologies: ['Spring Boot', 'React.js', 'REST API', 'MySQL', 'JWT'],
-          status: 'Développé',
-          category: 'Projet personnel',
-          features: ['Gestion des citoyens', 'Services municipaux', 'Déclarations en ligne', 'Paiements']
-        },
-        {
-          title: 'Plateforme d\'Annonces (Expat-Dakar)',
-          description: 'Marketplace d\'annonces immobilières et de services',
-          technologies: ['Spring Boot', 'React.js', 'MongoDB', 'Docker', 'RabbitMQ'],
-          status: 'En développement',
-          category: 'Projet personnel',
-          features: ['Recherche avancée', 'Chat en temps réel', 'Paiements en ligne', 'Système de notation']
-        },
-        {
-          title: 'Plateforme de Gestion pour Commerçants & Pharmaciens',
-          description: 'Solution complète de gestion des stocks, ventes et commandes',
-          technologies: ['Java', 'Spring Boot', 'React.js', 'PostgreSQL', 'Redis'],
-          status: 'Développé',
-          category: 'Projet entreprise',
-          features: ['Gestion des stocks', 'Point de vente', 'Reporting financier', 'Mobile friendly']
-        },
-        {
-          title: 'Système de Gestion des Courriers - Région Médicale',
-          description: 'Plateforme de gestion numérique des courriers et documents administratifs',
-          technologies: ['Spring Boot', 'Microservices', 'React.js', 'Elasticsearch', 'Kubernetes'],
-          status: 'En production',
-          category: 'Projet entreprise',
-          features: ['Workflows d\'approbation', 'Archivage sécurisé', 'Notifications', 'Recherche full-text']
-        }
-      ];
-
-      const skills = {
-        backend: ['Java', 'Spring Boot', 'Spring Cloud', 'Python', 'Node.js', 'PHP', 'Hibernate', 'REST API'],
-        frontend: ['React.js', 'Angular', 'HTML/CSS', 'JavaScript', 'TypeScript', 'Bootstrap', 'Tailwind CSS'],
-        mobile: ['React Native', 'Android Development'],
-        databases: ['PostgreSQL', 'MySQL', 'Oracle', 'MongoDB', 'Redis'],
-        devops: ['Docker', 'Kubernetes', 'Jenkins', 'Git', 'GitHub Actions', 'CI/CD'],
-        architecture: ['Microservices', 'SOA', 'DDD', 'Clean Architecture'],
-        ia: ['LLMs', 'LangChain', 'OpenAI API', 'Vector Databases', 'RAG', 'AI Agents'],
-        methodologies: ['Agile/Scrum', 'TDD', 'BDD', 'DevSecOps']
-      };
-
-      return (
-        <div>
-          {/* NAVIGATION */}
-          <nav className="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm">
-            <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-              <h1 className="text-xl font-bold text-primary">Diambar SENE</h1>
-              
-              <div className="hidden md:flex space-x-8">
-                {['home', 'projects', 'skills', 'experience', 'github', 'contact'].map((section) => (
-                  <button
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    className={`font-medium transition-colors ${activeSection === section ? 'text-primary border-b-2 border-primary' : 'hover:text-primary'}`}
-                  >
-                    {section === 'home' && 'Accueil'}
-                    {section === 'projects' && 'Projets'}
-                    {section === 'skills' && 'Compétences'}
-                    {section === 'experience' && 'Expérience'}
-                    {section === 'github' && 'GitHub'}
-                    {section === 'contact' && 'Contact'}
-                  </button>
-                ))}
-              </div>
-              
-              <div className="flex items-center space-x-4">
-                <button 
-                  onClick={toggleTheme} 
-                  className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
-                  aria-label={dark ? 'Passer en mode clair' : 'Passer en mode sombre'}
-                >
-                  {dark ? <i className="fas fa-sun"></i> : <i className="fas fa-moon"></i>}
-                </button>
-                
-                <a 
-                  href="CV_Diambar_in.pdf" 
-                  download 
-                  className="px-4 py-2 bg-primary text-white rounded-lg shadow hover:bg-secondary transition-colors font-medium"
-                >
-                  <i className="fas fa-download mr-2"></i>CV
-                </a>
-              </div>
-            </div>
-          </nav>
-
-          {/* HERO SECTION */}
-          <section id="home" className="relative overflow-hidden gradient-bg text-white">
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow"></div>
-              <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow"></div>
-            </div>
-            
-            <div className="relative max-w-6xl mx-auto px-6 py-20 text-center" data-aos="fade-up">
-              <div className="inline-block p-2 bg-white/20 rounded-full mb-6">
-                <div className="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-white shadow-2xl">
-                  <img 
-                    src="profile.jpg" 
-                    alt="Photo de Diambar SENE" 
-                    className="w-full h-full object-cover"
-                    onError={(e) => {e.target.onerror = null; e.target.src = 'https://ui-avatars.com/api/?name=Diambar+SENE&background=00b4d8&color=fff&size=200'}}
-                  />
-                </div>
-              </div>
-              
-              <h1 className="text-5xl md:text-6xl font-bold mb-4">Diambar SENE</h1>
-              <h2 className="text-2xl md:text-3xl mb-6">Ingénieur en Génie Logiciel & Développeur Full Stack</h2>
-              
-              <p className="text-xl max-w-3xl mx-auto mb-8 opacity-90">
-                Je conçois et développe des applications web et mobiles robustes, évolutives et innovantes 
-                avec un focus sur les architectures microservices et l'intégration de solutions d'Intelligence Artificielle.
-              </p>
-              
-              <div className="flex flex-wrap justify-center gap-4">
-                <a 
-                  href="#contact" 
-                  className="px-8 py-3 bg-white text-gray-900 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg"
-                  onClick={() => scrollToSection('contact')}
-                >
-                  <i className="fas fa-envelope mr-2"></i>Me contacter
-                </a>
-                <a 
-                  href="https://www.linkedin.com/in/diambar-sene-a53876211/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-colors"
-                >
-                  <i className="fab fa-linkedin-in mr-2"></i>LinkedIn
-                </a>
-                <a 
-                  href="https://github.com/diambar-sene" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-colors"
-                >
-                  <i className="fab fa-github mr-2"></i>GitHub
-                </a>
-              </div>
-            </div>
-            
-            <div className="absolute bottom-0 left-0 right-0">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#ffffff" fillOpacity="1" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,165.3C960,171,1056,149,1152,138.7C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-              </svg>
-            </div>
-          </section>
-
-          {/* PROJECTS SECTION */}
-          <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-800">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="text-center mb-16" data-aos="fade-up">
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Mes Projets</h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                  Découvrez mes projets personnels et professionnels, allant des applications web aux solutions d'entreprise
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {projects.map((project, idx) => (
-                  <div 
-                    key={idx} 
-                    className="project-card bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg"
-                    data-aos="fade-up"
-                    data-aos-delay={idx * 100}
-                  >
-                    <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${project.category === 'Projet entreprise' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'}`}>
-                          {project.category}
-                        </span>
-                        <span className={`ml-2 inline-block px-3 py-1 text-xs font-semibold rounded-full ${project.status === 'En production' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' : project.status === 'En développement' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' : 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'}`}>
-                          {project.status}
-                        </span>
-                      </div>
-                      <div className="text-2xl">
-                        {project.category === 'Projet entreprise' ? <i className="fas fa-building text-gray-400"></i> : <i className="fas fa-user text-gray-400"></i>}
-                      </div>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{project.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-5">{project.description}</p>
-                    
-                    <div className="mb-5">
-                      <h4 className="font-semibold mb-2 text-gray-700 dark:text-gray-300">Technologies utilisées:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, techIdx) => (
-                          <span key={techIdx} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-semibold mb-2 text-gray-700 dark:text-gray-300">Fonctionnalités:</h4>
-                      <ul className="space-y-1">
-                        {project.features.map((feature, featureIdx) => (
-                          <li key={featureIdx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
-                            <i className="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* SKILLS SECTION */}
-          <section id="skills" className="py-20">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="text-center mb-16" data-aos="fade-up">
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Mes Compétences</h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                  Expertise technique dans le développement full stack, l'architecture logicielle et les technologies émergentes
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {Object.entries(skills).map(([category, items], idx) => (
-                  <div 
-                    key={idx} 
-                    className="skill-category rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700"
-                    data-aos="fade-up"
-                    data-aos-delay={idx * 100}
-                  >
-                    <div className="flex items-center mb-4">
-                      <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mr-3">
-                        {category === 'backend' && <i className="fas fa-server text-primary"></i>}
-                        {category === 'frontend' && <i className="fas fa-desktop text-primary"></i>}
-                        {category === 'mobile' && <i className="fas fa-mobile-alt text-primary"></i>}
-                        {category === 'databases' && <i className="fas fa-database text-primary"></i>}
-                        {category === 'devops' && <i className="fas fa-code-branch text-primary"></i>}
-                        {category === 'architecture' && <i className="fas fa-sitemap text-primary"></i>}
-                        {category === 'ia' && <i className="fas fa-robot text-primary"></i>}
-                        {category === 'methodologies' && <i className="fas fa-tasks text-primary"></i>}
-                      </div>
-                      <h3 className="text-lg font-bold capitalize text-gray-900 dark:text-white">
-                        {category === 'ia' ? 'Intelligence Artificielle' : 
-                         category === 'devops' ? 'DevOps & Outils' : 
-                         category.charAt(0).toUpperCase() + category.slice(1)}
-                      </h3>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      {items.map((skill, skillIdx) => (
-                        <div key={skillIdx} className="flex items-center">
-                          <div className="w-2 h-2 rounded-full bg-primary mr-3"></div>
-                          <span className="text-gray-700 dark:text-gray-300">{skill}</span>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    {/* Special emphasis for AI skills */}
-                    {category === 'ia' && (
-                      <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/30 dark:to-blue-900/30 rounded-lg">
-                        <p className="text-sm font-semibold text-purple-700 dark:text-purple-300">
-                          <i className="fas fa-star mr-2"></i>
-                          Compétence en plein développement
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* EXPERIENCE SECTION */}
-          <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-800">
-            <div className="max-w-6xl mx-auto px-6">
-              <div className="text-center mb-16" data-aos="fade-up">
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Parcours Professionnel</h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                  Expérience en développement full stack et gestion de projets IT
-                </p>
-              </div>
-              
-              <div className="relative" data-aos="fade-up">
-                {/* Timeline line */}
-                <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary to-secondary"></div>
-                
-                {/* Timeline items */}
-                <div className="space-y-12 relative">
-                  {/* Current Job */}
-                  <div className="flex flex-col md:flex-row items-center">
-                    <div className="hidden md:block md:w-1/2 md:pr-12 md:text-right">
-                      <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Chef de Projet & Développeur Full Stack</h3>
-                        <p className="text-primary font-semibold mb-2">Yaatout Sarl – Ziguinchor</p>
-                        <p className="text-gray-600 dark:text-gray-300 mb-3">Mai 2023 – Présent (Prestataire)</p>
-                        <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                          <li className="flex items-start">
-                            <i className="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
-                            <span>Élaboration de spécifications techniques et analyse fonctionnelle</span>
-                          </li>
-                          <li className="flex items-start">
-                            <i className="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
-                            <span>Développement d'applications métiers (Java, Spring Boot, React.js)</span>
-                          </li>
-                          <li className="flex items-start">
-                            <i className="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
-                            <span>Mise en production CI/CD et maintenance des systèmes</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    <div className="relative z-10">
-                      <div className="w-6 h-6 rounded-full bg-primary border-4 border-white dark:border-gray-800 shadow-lg"></div>
-                    </div>
-                    
-                    <div className="block md:hidden w-full mt-6">
-                      <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Chef de Projet & Développeur Full Stack</h3>
-                        <p className="text-primary font-semibold mb-2">Yaatout Sarl – Ziguinchor</p>
-                        <p className="text-gray-600 dark:text-gray-300 mb-3">Mai 2023 – Présent (Prestataire)</p>
-                        <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                          <li className="flex items-start">
-                            <i className="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
-                            <span>Élaboration de spécifications techniques et analyse fonctionnelle</span>
-                          </li>
-                          <li className="flex items-start">
-                            <i className="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
-                            <span>Développement d'applications métiers (Java, Spring Boot, React.js)</span>
-                          </li>
-                          <li className="flex items-start">
-                            <i className="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
-                            <span>Mise en production CI/CD et maintenance des systèmes</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    <div className="hidden md:block md:w-1/2 md:pl-12">
-                      <div className="text-left">
-                        <div className="inline-block px-4 py-2 bg-primary/10 text-primary font-semibold rounded-full">
-                          Mai 2023 – Présent
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Internship */}
-                  <div className="flex flex-col md:flex-row items-center">
-                    <div className="hidden md:block md:w-1/2 md:pr-12 md:text-right">
-                      <div className="text-right">
-                        <div className="inline-block px-4 py-2 bg-primary/10 text-primary font-semibold rounded-full">
-                          Mai 2022 – Novembre 2022
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="relative z-10">
-                      <div className="w-6 h-6 rounded-full bg-secondary border-4 border-white dark:border-gray-800 shadow-lg"></div>
-                    </div>
-                    
-                    <div className="md:w-1/2 md:pl-12 mt-6 md:mt-0">
-                      <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Développeur Full Stack – Stage</h3>
-                        <p className="text-primary font-semibold mb-2">Université Assane SECK – Ziguinchor</p>
-                        <p className="text-gray-600 dark:text-gray-300 mb-3">Mai 2022 – Novembre 2022</p>
-                        <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                          <li className="flex items-start">
-                            <i className="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
-                            <span>Développement d'une application web de gestion administrative</span>
-                          </li>
-                          <li className="flex items-start">
-                            <i className="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
-                            <span>Rédaction de documentation technique avec Swagger</span>
-                          </li>
-                          <li className="flex items-start">
-                            <i className="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
-                            <span>Collaboration en mode Agile avec les équipes projet</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* GITHUB SECTION */}
-          <section id="github" className="py-20">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="text-center mb-16" data-aos="fade-up">
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Activité GitHub</h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                  Découvrez mes contributions, projets open source et statistiques de codage
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div data-aos="fade-right">
-                  <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow-lg">
-                    <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
-                      <i className="fab fa-github mr-3 text-2xl"></i>
-                      Statistiques GitHub
-                    </h3>
-                    
-                    <div className="space-y-6">
-                      <div>
-                        <img 
-                          src="https://github-readme-stats.vercel.app/api?username=diambar-sene&show_icons=true&count_private=true&hide_title=true&theme=tokyonight" 
-                          alt="Statistiques GitHub de Diambar SENE" 
-                          className="w-full rounded-lg shadow"
-                          onError={(e) => {e.target.style.display = 'none'}}
-                        />
-                      </div>
-                      
-                      <div>
-                        <img 
-                          src="https://github-readme-streak-stats.herokuapp.com/?user=diambar-sene&theme=tokyonight" 
-                          alt="Streak GitHub de Diambar SENE" 
-                          className="w-full rounded-lg shadow"
-                          onError={(e) => {e.target.style.display = 'none'}}
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="mt-8">
-                      <a 
-                        href="https://github.com/diambar-sene" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-                      >
-                        <i className="fab fa-github mr-2"></i>
-                        Visiter mon GitHub
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                
-                <div data-aos="fade-left">
-                  <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow-lg">
-                    <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
-                      <i className="fas fa-code mr-3 text-2xl"></i>
-                      Derniers Projets GitHub
-                    </h3>
-                    
-                    <div className="space-y-6">
-                      <div className="p-4 bg-white dark:bg-gray-900 rounded-lg">
-                        <h4 className="font-bold text-lg mb-2 text-primary">UASZ-Dématérialisation</h4>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-                          Application de dématérialisation des expressions de besoin pour l'Université Assane Seck
-                        </p>
-                        <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
-                          <span className="mr-4"><i className="fas fa-code-branch mr-1"></i> Java/Spring</span>
-                          <span><i className="far fa-calendar mr-1"></i> Mise à jour récemment</span>
-                        </div>
-                      </div>
-                      
-                      <div className="p-4 bg-white dark:bg-gray-900 rounded-lg">
-                        <h4 className="font-bold text-lg mb-2 text-primary">Commune-Web-App</h4>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-                          Application web de gestion municipale avec Spring Boot et React
-                        </p>
-                        <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
-                          <span className="mr-4"><i className="fas fa-code-branch mr-1"></i> Full Stack</span>
-                          <span><i className="far fa-star mr-1"></i> Projet personnel</span>
-                        </div>
-                      </div>
-                      
-                      <div className="p-4 bg-white dark:bg-gray-900 rounded-lg">
-                        <h4 className="font-bold text-lg mb-2 text-primary">Expat-Dakar-Clone</h4>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-                          Plateforme d'annonces inspirée d'Expat-Dakar avec système de chat
-                        </p>
-                        <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
-                          <span className="mr-4"><i className="fas fa-code-branch mr-1"></i> React/Spring</span>
-                          <span><i className="fas fa-code mr-1"></i> En développement</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-8">
-                      <a 
-                        href="https://github.com/diambar-sene?tab=repositories" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors"
-                      >
-                        <i className="fas fa-external-link-alt mr-2"></i>
-                        Voir tous mes projets
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* CONTACT SECTION */}
-          <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
-            <div className="max-w-6xl mx-auto px-6">
-              <div className="text-center mb-16" data-aos="fade-up">
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Contactez-moi</h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                  Vous avez un projet en tête ou souhaitez collaborer ? N'hésitez pas à me contacter
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center p-8 bg-white dark:bg-gray-900 rounded-xl shadow-lg" data-aos="fade-up">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-primary/20 flex items-center justify-center mb-6">
-                    <i className="fas fa-envelope text-2xl text-primary"></i>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Email</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">Pour les opportunités professionnelles</p>
-                  <a href="mailto:d.sene20160636@zig.univ.sn" className="text-primary font-semibold hover:underline">
-                    d.sene20160636@zig.univ.sn
-                  </a>
-                </div>
-                
-                <div className="text-center p-8 bg-white dark:bg-gray-900 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="100">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-primary/20 flex items-center justify-center mb-6">
-                    <i className="fas fa-phone text-2xl text-primary"></i>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Téléphone</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">Disponible pour échanger</p>
-                  <a href="tel:+221779221682" className="text-primary font-semibold hover:underline">
-                    +221 77 922 16 82
-                  </a>
-                </div>
-                
-                <div className="text-center p-8 bg-white dark:bg-gray-900 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-primary/20 flex items-center justify-center mb-6">
-                    <i className="fab fa-linkedin-in text-2xl text-primary"></i>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">LinkedIn</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">Connectons-nous professionnellement</p>
-                  <a 
-                    href="https://www.linkedin.com/in/diambar-sene-a53876211/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-primary font-semibold hover:underline"
-                  >
-                    /diambar-sene
-                  </a>
-                </div>
-              </div>
-              
-              <div className="mt-16 text-center" data-aos="fade-up">
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  Basé à Diourbel, Sénégal – Disponible pour des missions freelance et des opportunités en télétravail
-                </p>
-                <a 
-                  href="mailto:d.sene20160636@zig.univ.sn?subject=Opportunité%20professionnelle&body=Bonjour%20Diambar,"
-                  className="inline-flex items-center px-8 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors shadow-lg"
-                >
-                  <i className="fas fa-paper-plane mr-2"></i>
-                  Envoyer un message
-                </a>
-              </div>
-            </div>
-          </section>
-
-          <footer className="py-8 border-t border-gray-300 dark:border-gray-700">
-            <div className="max-w-7xl mx-auto px-6 text-center">
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                © 2025 – Portfolio de Diambar SENE. Tous droits réservés.
-              </p>
-              <div className="flex justify-center space-x-6">
-                <a href="https://github.com/diambar-sene" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
-                  <i className="fab fa-github text-xl"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/diambar-sene-a53876211/" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
-                  <i className="fab fa-linkedin-in text-xl"></i>
-                </a>
-                <a href="mailto:d.sene20160636@zig.univ.sn" className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
-                  <i className="fas fa-envelope text-xl"></i>
-                </a>
-              </div>
-            </div>
-          </footer>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden gradient-bg text-white">
+    <div class="relative max-w-6xl mx-auto px-6 py-20 text-center">
+      <div class="inline-block p-2 bg-white/20 rounded-full mb-6">
+        <div class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-white shadow-2xl">
+          <img 
+            src="profile.jpg" 
+            alt="Photo de Diambar SENE" 
+            class="w-full h-full object-cover"
+            onerror="this.src='https://ui-avatars.com/api/?name=Diambar+SENE&background=00b4d8&color=fff&size=200'"
+          />
         </div>
-      );
-    }
+      </div>
+      
+      <h1 class="text-5xl md:text-6xl font-bold mb-4">Diambar SENE</h1>
+      <h2 class="text-2xl md:text-3xl mb-6">Ingénieur en Génie Logiciel & Développeur Full Stack</h2>
+      
+      <p class="text-xl max-w-3xl mx-auto mb-8 opacity-90">
+        Je conçois et développe des applications web et mobiles robustes avec Spring Boot, React et architectures microservices.
+      </p>
+      
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#contact" class="px-8 py-3 bg-white text-gray-900 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+          <i class="fas fa-envelope mr-2"></i>Me contacter
+        </a>
+        <a href="https://www.linkedin.com/in/diambar-sene-a53876211/" target="_blank" class="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-colors">
+          <i class="fab fa-linkedin-in mr-2"></i>LinkedIn
+        </a>
+        <a href="https://github.com/diambar-sene" target="_blank" class="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-colors">
+          <i class="fab fa-github mr-2"></i>GitHub
+        </a>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#ffffff" fill-opacity="1" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,165.3C960,171,1056,149,1152,138.7C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      </svg>
+    </div>
+  </section>
 
-    (function mountApp() {
-      const container = document.getElementById('root');
-      try {
-        if (typeof ReactDOM !== 'undefined' && ReactDOM.createRoot) {
-          ReactDOM.createRoot(container).render(React.createElement(App));
-          return;
-        }
-        if (typeof ReactDOMClient !== 'undefined' && ReactDOMClient.createRoot) {
-          ReactDOMClient.createRoot(container).render(React.createElement(App));
-          return;
-        }
-        if (typeof ReactDOM !== 'undefined' && ReactDOM.render) {
-          ReactDOM.render(React.createElement(App), container);
-          return;
-        }
-        console.error("Impossible de monter l'application.");
-      } catch (err) {
-        console.error('Erreur lors du montage :', err);
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Mes Projets</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Découvrez mes projets personnels et professionnels
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <div class="project-card bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                Projet personnel
+              </span>
+              <span class="ml-2 inline-block px-3 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                En développement
+              </span>
+            </div>
+            <div class="text-2xl">
+              <i class="fas fa-university text-gray-400"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Dématérialisation UASZ</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            Application web de dématérialisation des expressions de besoin pour l'Université Assane Seck de Ziguinchor
+          </p>
+          
+          <div class="mb-5">
+            <h4 class="font-semibold mb-2 text-gray-700 dark:text-gray-300">Technologies:</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Spring Boot
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Spring Cloud
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Microservices
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Thymeleaf
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                Projet personnel
+              </span>
+              <span class="ml-2 inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                Développé
+              </span>
+            </div>
+            <div class="text-2xl">
+              <i class="fas fa-city text-gray-400"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Application Municipale</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            Application web pour la gestion administrative d'une commune avec Spring Boot et React.js
+          </p>
+          
+          <div class="mb-5">
+            <h4 class="font-semibold mb-2 text-gray-700 dark:text-gray-300">Technologies:</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Spring Boot
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                React.js
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                MySQL
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                JWT
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                Projet personnel
+              </span>
+              <span class="ml-2 inline-block px-3 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                En développement
+              </span>
+            </div>
+            <div class="text-2xl">
+              <i class="fas fa-ad text-gray-400"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Plateforme d'Annonces</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            Marketplace d'annonces immobilières et de services type Expat-Dakar
+          </p>
+          
+          <div class="mb-5">
+            <h4 class="font-semibold mb-2 text-gray-700 dark:text-gray-300">Technologies:</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Spring Boot
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                React.js
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                MongoDB
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Docker
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                Projet entreprise
+              </span>
+              <span class="ml-2 inline-block px-3 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                En production
+              </span>
+            </div>
+            <div class="text-2xl">
+              <i class="fas fa-store text-gray-400"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Gestion Commerçants & Pharmaciens</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            Solution complète de gestion des stocks, ventes et commandes
+          </p>
+          
+          <div class="mb-5">
+            <h4 class="font-semibold mb-2 text-gray-700 dark:text-gray-300">Technologies:</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Java
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Spring Boot
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                React.js
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                PostgreSQL
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                Projet entreprise
+              </span>
+              <span class="ml-2 inline-block px-3 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                En production
+              </span>
+            </div>
+            <div class="text-2xl">
+              <i class="fas fa-envelope-open-text text-gray-400"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Gestion des Courriers - Région Médicale</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            Plateforme de gestion numérique des courriers et documents administratifs
+          </p>
+          
+          <div class="mb-5">
+            <h4 class="font-semibold mb-2 text-gray-700 dark:text-gray-300">Technologies:</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Spring Boot
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Microservices
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                React.js
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+                Kubernetes
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 - AI Skills -->
+        <div class="project-card bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                Compétences IA
+              </span>
+              <span class="ml-2 inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                En apprentissage
+              </span>
+            </div>
+            <div class="text-2xl">
+              <i class="fas fa-robot text-gray-400"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Intelligence Artificielle</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            Compétences en développement avec IA et intégration d'LLMs
+          </p>
+          
+          <div class="mb-5">
+            <h4 class="font-semibold mb-2 text-gray-700 dark:text-gray-300">Technologies:</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-sm rounded-full">
+                LLMs
+              </span>
+              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-sm rounded-full">
+                LangChain
+              </span>
+              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-sm rounded-full">
+                OpenAI API
+              </span>
+              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-sm rounded-full">
+                AI Agents
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Mes Compétences</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Expertise technique full stack avec focus sur les architectures modernes
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Backend -->
+        <div class="skill-category rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mr-3">
+              <i class="fas fa-server text-primary"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Back-End</h3>
+          </div>
+          
+          <div class="space-y-3">
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Java / Spring Boot</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Spring Cloud</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Python</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">REST API</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Microservices</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="skill-category rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mr-3">
+              <i class="fas fa-desktop text-primary"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Front-End</h3>
+          </div>
+          
+          <div class="space-y-3">
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">React.js</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Angular</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">JavaScript/TypeScript</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">HTML/CSS</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Thymeleaf</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Databases & DevOps -->
+        <div class="skill-category rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mr-3">
+              <i class="fas fa-database text-primary"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Base de données & DevOps</h3>
+          </div>
+          
+          <div class="space-y-3">
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">PostgreSQL / MySQL</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">MongoDB / Redis</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Docker</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Kubernetes</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Git / CI/CD</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI & Methodologies -->
+        <div class="skill-category rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mr-3">
+              <i class="fas fa-robot text-primary"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">IA & Méthodologies</h3>
+          </div>
+          
+          <div class="space-y-3">
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">LLMs & AI Agents</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">LangChain / OpenAI API</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Agile / Scrum</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Tests (JUnit, Postman)</span>
+            </div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-primary mr-3"></div>
+              <span class="text-gray-700 dark:text-gray-300">Architecture logicielle</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Expérience Professionnelle</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Parcours en développement full stack et gestion de projets
+        </p>
+      </div>
+      
+      <div class="space-y-12">
+        <!-- Current Job -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Chef de Projet & Développeur Full Stack</h3>
+              <p class="text-primary font-semibold text-lg mt-1">Yaatout Sarl – Ziguinchor</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+              <span class="px-4 py-2 bg-primary/10 text-primary font-semibold rounded-full">
+                Mai 2023 – Présent
+              </span>
+            </div>
+          </div>
+          
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+              <span>Élaboration de spécifications techniques et analyse fonctionnelle</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+              <span>Développement d'applications métiers avec Java, Spring Boot et React.js</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+              <span>Réalisation de modules logiciels et assemblage de composants</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+              <span>Tests unitaires, documentation technique et mise en production CI/CD</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+              <span>Maintenance corrective et évolutive des systèmes existants</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Internship -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Développeur Full Stack – Stage</h3>
+              <p class="text-primary font-semibold text-lg mt-1">Université Assane SECK – Ziguinchor</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+              <span class="px-4 py-2 bg-primary/10 text-primary font-semibold rounded-full">
+                Mai 2022 – Novembre 2022
+              </span>
+            </div>
+          </div>
+          
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+              <span>Développement d'une application web de gestion administrative</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+              <span>Réalisation de prototypages et jeux d'essais de tests</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+              <span>Rédaction de documentation technique avec Swagger</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+              <span>Collaboration en mode Agile avec les équipes projet</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GitHub Section -->
+  <section id="github" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Activité GitHub</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Mes contributions et projets open source
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+          <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+            <i class="fab fa-github mr-3 text-2xl"></i>
+            Statistiques GitHub
+          </h3>
+          
+          <div class="space-y-6">
+            <div>
+              <img 
+                src="https://github-readme-stats.vercel.app/api?username=diambar-sene&show_icons=true&count_private=true&theme=tokyonight" 
+                alt="Statistiques GitHub de Diambar SENE" 
+                class="w-full rounded-lg shadow"
+              />
+            </div>
+            
+            <div>
+              <img 
+                src="https://github-readme-streak-stats.herokuapp.com/?user=diambar-sene&theme=tokyonight" 
+                alt="Streak GitHub de Diambar SENE" 
+                class="w-full rounded-lg shadow"
+              />
+            </div>
+          </div>
+          
+          <div class="mt-8">
+            <a href="https://github.com/diambar-sene" target="_blank" class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+              <i class="fab fa-github mr-2"></i>
+              Visiter mon GitHub
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+          <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+            <i class="fas fa-code mr-3 text-2xl"></i>
+            Derniers Projets
+          </h3>
+          
+          <div class="space-y-6">
+            <div class="p-4 bg-white dark:bg-gray-900 rounded-lg">
+              <h4 class="font-bold text-lg mb-2 text-primary">UASZ-Dématérialisation</h4>
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                Application de dématérialisation pour l'Université Assane Seck
+              </p>
+              <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                <span class="mr-4"><i class="fas fa-code-branch mr-1"></i> Java/Spring</span>
+                <span><i class="far fa-calendar mr-1"></i> Mise à jour récente</span>
+              </div>
+            </div>
+            
+            <div class="p-4 bg-white dark:bg-gray-900 rounded-lg">
+              <h4 class="font-bold text-lg mb-2 text-primary">Commune-Web-App</h4>
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                Application web de gestion municipale Spring Boot + React
+              </p>
+              <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                <span class="mr-4"><i class="fas fa-code-branch mr-1"></i> Full Stack</span>
+                <span><i class="far fa-star mr-1"></i> Projet personnel</span>
+              </div>
+            </div>
+            
+            <div class="p-4 bg-white dark:bg-gray-900 rounded-lg">
+              <h4 class="font-bold text-lg mb-2 text-primary">Plateforme d'Annonces</h4>
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                Marketplace d'annonces avec système de chat et paiements
+              </p>
+              <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                <span class="mr-4"><i class="fas fa-code-branch mr-1"></i> React/Spring</span>
+                <span><i class="fas fa-code mr-1"></i> En développement</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-8">
+            <a href="https://github.com/diambar-sene?tab=repositories" target="_blank" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors">
+              <i class="fas fa-external-link-alt mr-2"></i>
+              Voir tous mes projets
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Contactez-moi</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Disponible pour des opportunités professionnelles et collaborations
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-8 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
+          <div class="w-16 h-16 mx-auto rounded-full bg-primary/20 flex items-center justify-center mb-6">
+            <i class="fas fa-envelope text-2xl text-primary"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Email</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Pour les opportunités professionnelles</p>
+          <a href="mailto:d.sene20160636@zig.univ.sn" class="text-primary font-semibold hover:underline">
+            d.sene20160636@zig.univ.sn
+          </a>
+        </div>
+        
+        <div class="text-center p-8 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
+          <div class="w-16 h-16 mx-auto rounded-full bg-primary/20 flex items-center justify-center mb-6">
+            <i class="fas fa-phone text-2xl text-primary"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Téléphone</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Disponible pour échanger</p>
+          <a href="tel:+221779221682" class="text-primary font-semibold hover:underline">
+            +221 77 922 16 82
+          </a>
+        </div>
+        
+        <div class="text-center p-8 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
+          <div class="w-16 h-16 mx-auto rounded-full bg-primary/20 flex items-center justify-center mb-6">
+            <i class="fab fa-linkedin-in text-2xl text-primary"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">LinkedIn</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Connectons-nous professionnellement</p>
+          <a href="https://www.linkedin.com/in/diambar-sene-a53876211/" target="_blank" class="text-primary font-semibold hover:underline">
+            /diambar-sene
+          </a>
+        </div>
+      </div>
+      
+      <div class="mt-16 text-center">
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          Basé à Diourbel, Sénégal – Disponible pour missions freelance et télétravail
+        </p>
+        <a href="mailto:d.sene20160636@zig.univ.sn?subject=Opportunité%20professionnelle" class="inline-flex items-center px-8 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors shadow-lg">
+          <i class="fas fa-paper-plane mr-2"></i>
+          Envoyer un message
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 border-t border-gray-300 dark:border-gray-700">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-gray-600 dark:text-gray-400 mb-4">
+        © 2025 – Portfolio de Diambar SENE. Tous droits réservés.
+      </p>
+      <div class="flex justify-center space-x-6">
+        <a href="https://github.com/diambar-sene" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
+          <i class="fab fa-github text-xl"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/diambar-sene-a53876211/" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
+          <i class="fab fa-linkedin-in text-xl"></i>
+        </a>
+        <a href="mailto:d.sene20160636@zig.univ.sn" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
+          <i class="fas fa-envelope text-xl"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript pour le thème -->
+  <script>
+    // Gestion du thème
+    const themeToggle = document.getElementById('themeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
+    
+    // Appliquer le thème initial
+    if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+    
+    // Toggle du thème
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
       }
-    })();
+    });
+    
+    // Smooth scroll pour les ancres
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Animation au scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in');
+        }
+      });
+    }, observerOptions);
+    
+    // Observer les éléments à animer
+    document.querySelectorAll('.project-card, .skill-category').forEach(el => {
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>
