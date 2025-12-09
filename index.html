@@ -5,25 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio – Diambar SENE</title>
 
-  <!-- TailwindCSS CDN -->
+  <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          colors: {
-            primary: '#00b4d8',
-          }
-        }
-      }
-    }
+          colors: { primary: '#00b4d8' },
+        },
+      },
+    };
   </script>
 
   <!-- React CDN -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- AOS Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
 <body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition duration-300">
@@ -32,15 +34,10 @@
   <script type="text/babel">
     function App() {
       const [dark, setDark] = React.useState(true);
-
-      React.useEffect(() => {
-        // Ensure initial theme class matches state on first render
-        if (dark) document.documentElement.classList.add('dark');
-        else document.documentElement.classList.remove('dark');
-      }, []); // run only on mount
+      React.useEffect(() => { AOS.init({ duration: 900 }); }, []);
 
       const toggleTheme = () => {
-        setDark(prev => {
+        setDark((prev) => {
           const next = !prev;
           document.documentElement.classList.toggle('dark', next);
           return next;
@@ -57,47 +54,50 @@
             </button>
           </header>
 
-          {/* HERO SECTION */}
-          <section className="text-center py-20">
-            <img src="profile.jpg" alt="Photo de Diambar SENE" className="mx-auto rounded-full shadow-lg" />
+          {/* HERO */}
+          <section className="text-center py-20" data-aos="fade-up">
+            <img src="profile.jpg" alt="Photo de Diambar SENE" className="mx-auto rounded-full shadow-lg w-40 h-40 object-cover" />
             <h2 className="mt-6 text-4xl font-bold">Ingénieur en Génie Logiciel</h2>
-            <p className="mt-4 text-lg max-w-2xl mx-auto">
-              Développeur Full Stack spécialisé en Spring Boot, React, Microservices et DevOps.
-            </p>
+            <p className="mt-4 text-lg max-w-2xl mx-auto">Développeur Full Stack spécialisé en Spring Boot, React, Microservices et DevOps.</p>
+
+            {/* CV Download */}
+            <a href="CV_Diambar_in.pdf" download className="mt-6 inline-block px-6 py-3 bg-primary text-white rounded-lg shadow hover:scale-105 transition-transform">
+              📄 Télécharger mon CV
+            </a>
           </section>
 
-          {/* SKILLS */}
-          <section className="max-w-5xl mx-auto p-6">
-            <h3 className="text-3xl font-bold text-center mb-10 text-primary">Compétences</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* TECHNO ICONS */}
+          <section className="max-w-5xl mx-auto p-6" data-aos="fade-up">
+            <h3 className="text-3xl font-bold text-center mb-10 text-primary">Technologies</h3>
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-6 text-center">
               {[
-                ['Back-End', 'Java, Spring Boot, Microservices, JWT'],
-                ['Front-End', 'React.js, JavaScript, Thymeleaf'],
-                ['Mobile', 'React Native'],
-                ['Base de Données', 'PostgreSQL, MySQL, MongoDB'],
-                ['DevOps', 'Docker, CI/CD, Kubernetes'],
-                ['Architecture', 'API REST, Microservices']
-              ].map(([title, desc], idx) => (
-                <div key={idx} className="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl shadow hover:scale-105 transition-transform">
-                  <h4 className="font-bold text-xl mb-2 text-primary">{title}</h4>
-                  <p>{desc}</p>
+                ['🐍', 'Python'],
+                ['☕', 'Java'],
+                ['⚛️', 'React'],
+                ['📱', 'React Native'],
+                ['🐘', 'PostgreSQL'],
+                ['🐳', 'Docker'],
+              ].map(([icon, name], idx) => (
+                <div key={idx} className="p-4 bg-gray-100 dark:bg-gray-800 rounded-xl shadow" data-aos="zoom-in">
+                  <div className="text-4xl">{icon}</div>
+                  <p className="mt-2 font-medium">{name}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* PROJECTS */}
-          <section className="max-w-5xl mx-auto p-6 mt-10">
+          <section className="max-w-5xl mx-auto p-6" data-aos="fade-up">
             <h3 className="text-3xl font-bold text-center mb-10 text-primary">Projets</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                ['Dématérialisation des Expressions de Besoins – UASZ', 'Application web complète en microservices (Spring Boot + Spring Cloud) avec gestion des workflows, authentification et interface Thymeleaf.'],
-                ['Application Web d’une Commune', 'Application de gestion municipale : ménages, habitants, documents, état civil, dashboard React.'],
-                ['Plateforme de Petites Annonces – Type Expat-Dakar', 'Publication d’annonces, messagerie, rôles utilisateurs, paiement et interface moderne React.'],
-                ['Plateforme de Gestion & Vente – Commerçants / Pharmaciens', "Solution métier pour la gestion des stocks, ventes, tableaux de bord et rôle administrateur."],
-                ['Plateforme de Gestion des Courriers – Région Médicale de Ziguinchor', "Système complet de suivi des courriers, archivage numérique, workflows et notifications."]
+                ['Dématérialisation UASZ', 'Microservices Spring Boot + Spring Cloud + Thymeleaf'],
+                ['Application d’une Commune', 'Spring Boot + React.js'],
+                ['Plateforme Annonces type Expat-Dakar', 'React.js + Spring Boot + Docker'],
+                ['Gestion & Vente – Pharmaciens & Commerçants', 'Solution métier complète'],
+                ['Gestion des Courriers – Région Médicale', 'Archivage, workflows, notifications'],
               ].map(([title, desc], idx) => (
-                <div key={idx} className="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl shadow hover:scale-105 transition-transform">
+                <div key={idx} className="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl shadow hover:scale-105 transition-transform" data-aos="fade-right">
                   <h4 className="font-bold text-xl mb-2 text-primary">{title}</h4>
                   <p>{desc}</p>
                 </div>
@@ -105,8 +105,49 @@
             </div>
           </section>
 
+          {/* SERVICES */}
+          <section className="max-w-5xl mx-auto p-6" data-aos="fade-up">
+            <h3 className="text-3xl font-bold text-center mb-10 text-primary">Services / Freelance</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                ['Développement Web', 'Applications performantes avec Spring Boot & React'],
+                ['Développement Mobile', 'Apps Android/iOS avec React Native'],
+                ['Solutions Entreprises', 'Logiciels métiers sur mesure'],
+              ].map(([title, desc], idx) => (
+                <div key={idx} className="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl shadow" data-aos="zoom-in">
+                  <h4 className="font-bold text-xl text-primary">{title}</h4>
+                  <p className="mt-2">{desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* TIMELINE EXP */}
+          <section className="max-w-4xl mx-auto p-6" data-aos="fade-up">
+            <h3 className="text-3xl font-bold text-center mb-10 text-primary">Expérience</h3>
+            <div className="relative border-l border-primary ml-6">
+              {[
+                ['2023 – Présent', 'Chef de Projet & Développeur Full Stack — Yaatout Sarl'],
+                ['2022', "Développeur Full Stack — Université Assane Seck"],
+              ].map(([date, role], idx) => (
+                <div key={idx} className="mb-10 ml-6" data-aos="fade-left">
+                  <div className="absolute w-4 h-4 bg-primary rounded-full -left-2"></div>
+                  <h4 className="text-xl font-bold">{role}</h4>
+                  <p className="text-primary font-semibold">{date}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* GITHUB DASHBOARD */}
+          <section className="text-center py-20" data-aos="fade-up">
+            <h3 className="text-3xl font-bold text-primary mb-6">Statistiques GitHub</h3>
+            <img class="mx-auto" src="https://github-readme-stats.vercel.app/api?username=diambar-sene&show_icons=true&theme=tokyonight" />
+            <img class="mx-auto mt-6" src="https://github-readme-streak-stats.herokuapp.com/?user=diambar-sene&theme=tokyonight" />
+          </section>
+
           {/* CONTACT */}
-          <section className="text-center py-20">
+          <section className="text-center py-20" data-aos="fade-up">
             <h3 className="text-3xl font-bold text-primary">Contact</h3>
             <p className="mt-4 text-lg">📧 d.sene20160636@zig.univ.sn</p>
             <p className="mt-1 text-lg">📞 +221 77 922 16 82</p>
@@ -120,33 +161,24 @@
       );
     }
 
-    // Rendering: support both React 18+ (createRoot) and older React versions (render)
     (function mountApp() {
       const container = document.getElementById('root');
-
-      // If React 18's createRoot is available (might be exposed as ReactDOM.createRoot or ReactDOMClient.createRoot)
       try {
         if (typeof ReactDOM !== 'undefined' && ReactDOM.createRoot) {
           ReactDOM.createRoot(container).render(React.createElement(App));
           return;
         }
-
-        // Some UMD builds expose the client under ReactDOMClient
         if (typeof ReactDOMClient !== 'undefined' && ReactDOMClient.createRoot) {
           ReactDOMClient.createRoot(container).render(React.createElement(App));
           return;
         }
-
-        // Fallback for older React versions
         if (typeof ReactDOM !== 'undefined' && ReactDOM.render) {
           ReactDOM.render(React.createElement(App), container);
           return;
         }
-
-        // If nothing worked, throw an informative error to the console
-        console.error('Impossible de monter l\'application: ReactDOM n\'est pas disponible ou n\'a pas de méthode de rendu compatible.');
+        console.error("Impossible de monter l'application.");
       } catch (err) {
-        console.error('Erreur lors du montage de l\'application :', err);
+        console.error('Erreur lors du montage :', err);
       }
     })();
   </script>
