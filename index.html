@@ -33,9 +33,18 @@
     function App() {
       const [dark, setDark] = React.useState(true);
 
+      React.useEffect(() => {
+        // Ensure initial theme class matches state on first render
+        if (dark) document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
+      }, []); // run only on mount
+
       const toggleTheme = () => {
-        setDark(!dark);
-        document.documentElement.classList.toggle('dark');
+        setDark(prev => {
+          const next = !prev;
+          document.documentElement.classList.toggle('dark', next);
+          return next;
+        });
       };
 
       return (
@@ -50,7 +59,7 @@
 
           {/* HERO SECTION */}
           <section className="text-center py-20">
-            <img src="https://via.placeholder.com/160" className="mx-auto rounded-full shadow-lg" />
+            <img src="https://via.placeholder.com/160" alt="Photo de Diambar SENE" className="mx-auto rounded-full shadow-lg" />
             <h2 className="mt-6 text-4xl font-bold">Ingénieur en Génie Logiciel</h2>
             <p className="mt-4 text-lg max-w-2xl mx-auto">
               Développeur Full Stack spécialisé en Spring Boot, React, Microservices et DevOps.
@@ -68,8 +77,8 @@
                 ['Base de Données', 'PostgreSQL, MySQL, MongoDB'],
                 ['DevOps', 'Docker, CI/CD, Kubernetes'],
                 ['Architecture', 'API REST, Microservices']
-              ].map(([title, desc]) => (
-                <div className="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl shadow hover:scale-105 transition">
+              ].map(([title, desc], idx) => (
+                <div key={idx} className="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl shadow hover:scale-105 transition-transform">
                   <h4 className="font-bold text-xl mb-2 text-primary">{title}</h4>
                   <p>{desc}</p>
                 </div>
@@ -85,8 +94,8 @@
                 ['Dématérialisation UASZ', 'Spring Boot Microservices, Spring Cloud, Thymeleaf'],
                 ['Application d’une Commune', 'Spring Boot, React.js'],
                 ['Plateforme Annonces type Expat-Dakar', 'React.js, Spring Boot, Docker']
-              ].map(([title, desc]) => (
-                <div className="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl shadow hover:scale-105 transition">
+              ].map(([title, desc], idx) => (
+                <div key={idx} className="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl shadow hover:scale-105 transition-transform">
                   <h4 className="font-bold text-xl mb-2 text-primary">{title}</h4>
                   <p>{desc}</p>
                 </div>
@@ -109,7 +118,35 @@
       );
     }
 
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    // Rendering: support both React 18+ (createRoot) and older React versions (render)
+    (function mountApp() {
+      const container = document.getElementById('root');
+
+      // If React 18's createRoot is available (might be exposed as ReactDOM.createRoot or ReactDOMClient.createRoot)
+      try {
+        if (typeof ReactDOM !== 'undefined' && ReactDOM.createRoot) {
+          ReactDOM.createRoot(container).render(React.createElement(App));
+          return;
+        }
+
+        // Some UMD builds expose the client under ReactDOMClient
+        if (typeof ReactDOMClient !== 'undefined' && ReactDOMClient.createRoot) {
+          ReactDOMClient.createRoot(container).render(React.createElement(App));
+          return;
+        }
+
+        // Fallback for older React versions
+        if (typeof ReactDOM !== 'undefined' && ReactDOM.render) {
+          ReactDOM.render(React.createElement(App), container);
+          return;
+        }
+
+        // If nothing worked, throw an informative error to the console
+        console.error('Impossible de monter l\'application: ReactDOM n\'est pas disponible ou n\'a pas de méthode de rendu compatible.');
+      } catch (err) {
+        console.error('Erreur lors du montage de l\'application :', err);
+      }
+    })();
   </script>
 </body>
 </html>
