@@ -1,126 +1,115 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="dark">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Diambar SENE - Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – Diambar SENE</title>
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00b4d8',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
-<body>
-    <header>
-        <h1>Diambar SENE</h1>
-        <p>Ingénieur en Génie Logiciel | Développeur Full Stack</p>
-        <nav>
-            <a href="#about">À propos</a>
-            <a href="#skills">Compétences</a>
-            <a href="#projects">Projets</a>
-            <a href="#experience">Expériences</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition duration-300">
+  <div id="root"></div>
 
-    <section id="hero">
-        <h2>Bienvenue sur mon Portfolio</h2>
-        <p>Je conçois et développe des solutions numériques modernes, performantes et sécurisées.</p>
-        <a href="#projects" class="btn">Voir mes projets</a>
-    </section>
+  <script type="text/babel">
+    function App() {
+      const [dark, setDark] = React.useState(true);
 
-    <section id="about">
-        <h2>À propos de moi</h2>
-        <p>
-            Ingénieur en Génie Logiciel avec une expertise en développement Full Stack.
-            Spécialisé en Java, Spring Boot, React.js, microservices et architecture logicielle.
-            Passionné par la création de solutions robustes et l’innovation digitale.
-        </p>
-    </section>
+      const toggleTheme = () => {
+        setDark(!dark);
+        document.documentElement.classList.toggle('dark');
+      };
 
-    <section id="skills">
-        <h2>Compétences Techniques</h2>
+      return (
+        <div>
+          {/* HEADER */}
+          <header className="flex justify-between items-center p-6 border-b border-gray-300 dark:border-gray-700">
+            <h1 className="text-2xl font-bold">Diambar SENE</h1>
+            <button onClick={toggleTheme} className="px-4 py-2 bg-primary text-white rounded-lg shadow">
+              {dark ? 'Mode Clair' : 'Mode Sombre'}
+            </button>
+          </header>
 
-        <div class="skills-grid">
-            <div class="card">
-                <h3>Back-End</h3>
-                <p>Java, Spring Boot, JWT, Spring Security, Microservices, API REST</p>
-            </div>
-
-            <div class="card">
-                <h3>Front-End</h3>
-                <p>React.js, JavaScript, HTML/CSS, Bootstrap, Thymeleaf</p>
-            </div>
-
-            <div class="card">
-                <h3>Mobile</h3>
-                <p>React Native</p>
-            </div>
-
-            <div class="card">
-                <h3>DevOps</h3>
-                <p>Docker, GitHub, Jenkins, CI/CD, Kubernetes</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Projets Réalisés</h2>
-
-        <div class="projects-grid">
-
-            <div class="project-card">
-                <h3>Dématérialisation des Expressions de Besoins (UASZ)</h3>
-                <p>Application web basée sur Spring Boot Microservices, Spring Cloud et Thymeleaf.</p>
-                <p><strong>Technos :</strong> Spring Boot, Spring Cloud, Thymeleaf, PostgreSQL</p>
-            </div>
-
-            <div class="project-card">
-                <h3>Application Web d’une Commune</h3>
-                <p>Gestion municipale digitale avec React + Spring Boot.</p>
-                <p><strong>Technos :</strong> Spring Boot, React.js, PostgreSQL</p>
-            </div>
-
-            <div class="project-card">
-                <h3>Plateforme de Petites Annonces (type Expat-Dakar)</h3>
-                <p>Application complète : annonces, messagerie interne, rôles utilisateurs.</p>
-                <p><strong>Technos :</strong> Spring Boot, React.js, Docker</p>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="experience">
-        <h2>Expériences Professionnelles</h2>
-
-        <div class="experience-card">
-            <h3>Chef de Projet & Développeur Full Stack — Yaatout Sarl</h3>
-            <p><em>Mai 2023 – Présent</em></p>
-            <p>
-                Développement d'applications métiers, CI/CD, maintenance évolutive et corrective,
-                documentation technique et gestion de projet Agile.
+          {/* HERO SECTION */}
+          <section className="text-center py-20">
+            <img src="https://via.placeholder.com/160" className="mx-auto rounded-full shadow-lg" />
+            <h2 className="mt-6 text-4xl font-bold">Ingénieur en Génie Logiciel</h2>
+            <p className="mt-4 text-lg max-w-2xl mx-auto">
+              Développeur Full Stack spécialisé en Spring Boot, React, Microservices et DevOps.
             </p>
+          </section>
+
+          {/* SKILLS */}
+          <section className="max-w-5xl mx-auto p-6">
+            <h3 className="text-3xl font-bold text-center mb-10 text-primary">Compétences</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                ['Back-End', 'Java, Spring Boot, Microservices, JWT'],
+                ['Front-End', 'React.js, JavaScript, Thymeleaf'],
+                ['Mobile', 'React Native'],
+                ['Base de Données', 'PostgreSQL, MySQL, MongoDB'],
+                ['DevOps', 'Docker, CI/CD, Kubernetes'],
+                ['Architecture', 'API REST, Microservices']
+              ].map(([title, desc]) => (
+                <div className="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl shadow hover:scale-105 transition">
+                  <h4 className="font-bold text-xl mb-2 text-primary">{title}</h4>
+                  <p>{desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* PROJECTS */}
+          <section className="max-w-5xl mx-auto p-6 mt-10">
+            <h3 className="text-3xl font-bold text-center mb-10 text-primary">Projets</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                ['Dématérialisation UASZ', 'Spring Boot Microservices, Spring Cloud, Thymeleaf'],
+                ['Application d’une Commune', 'Spring Boot, React.js'],
+                ['Plateforme Annonces type Expat-Dakar', 'React.js, Spring Boot, Docker']
+              ].map(([title, desc]) => (
+                <div className="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl shadow hover:scale-105 transition">
+                  <h4 className="font-bold text-xl mb-2 text-primary">{title}</h4>
+                  <p>{desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* CONTACT */}
+          <section className="text-center py-20">
+            <h3 className="text-3xl font-bold text-primary">Contact</h3>
+            <p className="mt-4 text-lg">📧 d.sene20160636@zig.univ.sn</p>
+            <p className="mt-1 text-lg">📞 +221 77 922 16 82</p>
+            <p className="mt-1 text-lg"><a className="text-primary underline" href="https://www.linkedin.com/in/diambar-sene-a53876211/">LinkedIn</a></p>
+          </section>
+
+          <footer className="text-center py-6 border-t border-gray-300 dark:border-gray-700">
+            © 2025 – Portfolio de Diambar SENE
+          </footer>
         </div>
+      );
+    }
 
-        <div class="experience-card">
-            <h3>Développeur Full Stack — Université Assane Seck</h3>
-            <p><em>Mai 2022 – Novembre 2022</em></p>
-            <p>
-                Développement d'une application web de gestion administrative,
-                jeux d’essais de tests et documentation openAPI.
-            </p>
-        </div>
-
-    </section>
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email : <strong>d.sene20160636@zig.univ.sn</strong></p>
-        <p>Téléphone : <strong>+221 77 922 16 82</strong></p>
-        <p>LinkedIn : <a href="https://www.linkedin.com/in/diambar-sene-a53876211/">Mon Profil</a></p>
-    </section>
-
-    <footer>
-        <p>© 2025 — Portfolio de Diambar SENE</p>
-    </footer>
-
-    <script src="script.js"></script>
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
 </body>
 </html>
